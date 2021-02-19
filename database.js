@@ -1,10 +1,19 @@
-require('dotenv').config()
-const MongoClient = require('mongodb').MongoClient;
-const url = `mongodb+srv://ritik:${process.env.DB_PASSWORD}@cluster0.f3ffx.mongodb.net/${process.env.minorapi}?retryWrites=true&w=majority`;
+require('dotenv').config();
+const mongoose = require("mongoose");
+const url = `mongodb+srv://ritik:${process.env.DB_PASSWORD}@cluster0.f3ffx.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
-MongoClient.connect(url).then((err, db) => { 
-	if (err) {
-		console.log(err);
-	}
-	console.log('connected');
-}); 
+//import models
+const Product = require('./models/product');
+
+//connect to the database
+mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true })
+	.then(() => { 
+		console.log('MongoDB Connected!');
+	})
+	.catch((err) => { 
+		throw err;
+	})
+//export models for use in the routes
+module.exports = {
+	Product
+};
