@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
     </style>
     </head>
     <body style="background-color: rgb(245,245,245);">
-    <h1 style="text-align: center;margin: 0px; font-size:70px">Minor Project </h1>
+    <h1 style="text-align: center;margin: 0px;font-size:70px">Minor Project </h1>
     <hr style="width:30%;text-align:center;">
     <h3 style="text-align: center; font-family: Helvetica;margin:0px;font-weight:700">181262 181275</h3>
     <h3 style="text-align: center; font-family: Courier;margin:0px;font-weight:200; margin-top:30px;">
