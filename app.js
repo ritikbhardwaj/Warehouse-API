@@ -7,6 +7,7 @@ const models = require('./database');
 
 //import routes
 const productRouter = require('./routes/product');
+const homeRouter = require('./routes/home');
 
 // express middlewares
 app.use(morgan('tiny'));
@@ -16,6 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //use routes
 app.use('/', productRouter);
+app.use('/', homeRouter);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
