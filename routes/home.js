@@ -39,10 +39,10 @@ router.get('/', (req, res) => {
     
     <div class="center">
     <p>
-    GET     - /products/:id<br>
-    POST    - /products<br>
-    PUT     - /products<br>
-    DELETE  - /products
+    GET     - /products/:id - Get a product<br>
+    POST    - /products - Enter a product<br>
+    PUT     - /products - Update a product<br>
+    DELETE  - /products - Delete a product
     </p>
     </div>
     <div class="footer">
