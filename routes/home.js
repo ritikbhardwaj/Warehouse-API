@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
     <hr style="width:30%;text-align:center;">
     <h3 style="text-align: center; font-family: Helvetica;margin:0px;font-weight:700">181262 181275</h3>
     <h3 style="text-align: center; font-family: Courier;margin:0px;font-weight:200; margin-top:30px;">
-    This is the home page of the warehouse API(Application Programming Interface).<br>Some of the routes are.
+    This is the home page of the warehouse API(Application Programming Interface).
     </h3>
     
     <div class="center">
