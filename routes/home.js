@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
     <h1 style="text-align: center;margin: 0px; font-size: 70px">Minor Project </h1>
     <hr style="width:30%;text-align:center;">
     <h3 style="text-align: center; font-family: Helvetica;margin:0px;font-weight:700">181262 181275</h3>
-    <h3 style="text-align: center; font-family: Courier;margin:0px;font-weight:200; margin-top: 30px;">
+    <h3 style="text-align: center; font-family: Courier;margin:0px;font-weight:200; margin-top:30px;">
     This is the home page of the warehouse API(Application Programming Interface).<br>Some of the routes are.
     </h3>
     
