@@ -1,7 +1,12 @@
+let views = 0;
+let ips = [];
+
 const express = require('express'),
     router = express.Router();
 
 router.get('/', (req, res) => {
+    views++;
+    console.log(req.ip);
     res.status(200).send(`
     <head>
     <style>
@@ -18,6 +23,10 @@ router.get('/', (req, res) => {
             padding: 10px;
         }
         .footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-intems: center;
             position: fixed;
             left: 0;
             bottom: 0;
@@ -27,6 +36,13 @@ router.get('/', (req, res) => {
             text-align: center;
             font-family: helvetica;
         }
+        .footer .views{
+            flex-grow: 1;
+            font-family: helvetica;
+        } 
+        .footer .link{
+            flex-grow: 20;
+        } 
     </style>
     </head>
     <body style="background-color: rgb(245,245,245);">
@@ -46,7 +62,8 @@ router.get('/', (req, res) => {
     </p>
     </div>
     <div class="footer">
-    <p>check out <a href="https://github.com/ritikbhardwaj/Warehouse-API">Github</a> for the source code</p>
+    <p class="views">VIEWS - ${views}</p>
+    <p class = "link">check out <a href="https://github.com/ritikbhardwaj/Warehouse-API">Github</a> for the source code</p>
     </div>
     </body>
     `)
