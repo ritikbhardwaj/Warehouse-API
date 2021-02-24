@@ -1,12 +1,30 @@
-let views = 0;
-let ips = [];
-
 const express = require('express'),
     router = express.Router();
 
+//import the siteData model
+const siteData = require('../database').siteData;
+
+//hold the number of views
+let views = 0;
+
 router.get('/', (req, res) => {
-    views++;
-    console.log(req.ip);
+    let newData = new siteData({
+        ipAddress: req.ip.split(':')[3]
+    })
+    //save the data to the collection
+    newData.save((err, result) => { 
+        if (err) { 
+            res.status(400).send(err);
+        }
+    })
+    //query to find the no. of documents
+    siteData.estimatedDocumentCount((err, count) => { 
+        if (err) {
+            res.status(400).send(err);
+        } else { 
+            views = count;
+        }
+    })
     res.status(200).send(`
     <head>
     <style>
@@ -43,6 +61,9 @@ router.get('/', (req, res) => {
         .footer .link{
             flex-grow: 20;
         } 
+        .footer .ip{
+            flex-grow: 1;
+        }
     </style>
     </head>
     <body style="background-color: rgb(245,245,245);">
@@ -62,8 +83,9 @@ router.get('/', (req, res) => {
     </p>
     </div>
     <div class="footer">
-    <p class="views">VIEWS - ${views}</p>
+    <p class="views">VIEWS - <span style="color: yellow">${views}</span></p>
     <p class = "link">check out <a href="https://github.com/ritikbhardwaj/Warehouse-API">Github</a> for the source code</p>
+    <p class="ip">Your IP - <span style="color: yellow">${req.ip.split(':')[3]}</span></p>
     </div>
     </body>
     `)

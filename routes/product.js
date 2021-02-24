@@ -9,5 +9,14 @@ router.get('/products/:id', (req, res) => {
     }
     
 });
+
+router.post('/products', (req, res) => { 
+
+});
+
+router.put('/products', (req, res) => { 
+    
+});
    
+
 module.exports = router;
