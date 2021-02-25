@@ -4,8 +4,6 @@ const express = require('express'),
 //import the siteData model
 const siteData = require('../database').siteData;
 
-//hold the number of views
-let views = 0;
 
 router.get('/', (req, res) => {
     let newData = new siteData({
@@ -22,10 +20,7 @@ router.get('/', (req, res) => {
         if (err) {
             res.status(400).send(err);
         } else { 
-            views = count;
-        }
-    })
-    res.status(200).send(`
+            res.status(200).send(`
     <head>
     <style>
         .center {
@@ -83,12 +78,15 @@ router.get('/', (req, res) => {
     </p>
     </div>
     <div class="footer">
-    <p class="views">VIEWS - <span style="color: yellow">${views}</span></p>
+    <p class="views">VIEWS - <span style="color: yellow">${count}</span></p>
     <p class = "link">check out <a href="https://github.com/ritikbhardwaj/Warehouse-API">Github</a> for the source code</p>
     <p class="ip">Your IP - <span style="color: yellow">${req.ip.split(':')[3]}</span></p>
     </div>
     </body>
     `)
+        }
+    })
+    
 });
    
 module.exports = router;
