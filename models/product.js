@@ -2,10 +2,26 @@ const mongoose = require("mongoose");
 let productSchema = new mongoose.Schema(
     {
         SKU: String,
-        title: String,
-        description: String,
-        quantity: Number,
-        price: Number
+        title:
+        {
+            type: String,
+            required: true
+        },
+        description:
+        {
+            type: String,
+            required: true
+        },
+        quantity:
+        {
+            type: Number,
+            required: true
+        },
+        price:
+        {
+            type: Number,
+            required: true
+        }
     }
 );
 
