@@ -6,7 +6,7 @@ $('document').ready(() => {
     })
     //fetch handlers
     function fetchhandler(sku) { 
-        fetch('http://localhost:3000/products/'+sku)
+        fetch('https://minor-project-api.herokuapp.com/products/'+sku)
         .then(response => response.json())
             .then((data) => { 
                 let html = 
