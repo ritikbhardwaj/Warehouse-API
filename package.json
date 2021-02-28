@@ -4,16 +4,18 @@
 	"description": "Demo Server for Minor Project",
 	"main": "index.js",
 	"scripts": {
-		"dev": "nodemon bin/index.js",
+		"dev": "nodemon bin/index.js -e ejs,css,js",
 		"start": "node bin/index.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"cors": "^2.8.5",
 		"dotenv": "^8.2.0",
+		"ejs": "^3.1.6",
 		"express": "^4.17.1",
-		"mongoose": "^5.11.17",
+		"mongoose": "^5.11.15",
 		"morgan": "^1.10.0"
 	},
 	"devDependencies": {
