@@ -7,7 +7,7 @@ $('document').ready(() => {
     //fetch handlers
     function fetchhandler(sku) { 
         $('.content-2').html(`<h1 class="loading">loading...</h1>`);
-        fetch('http://minor-project-api.herokuapp.com/products/'+sku)
+        fetch('https://minor-project-api.herokuapp.com/products/'+sku)
         .then(response => response.json())
             .then((data) => { 
                 let html = 
