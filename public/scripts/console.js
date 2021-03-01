@@ -18,6 +18,7 @@ $('document').ready(() => {
                     <p class="qty info-item"><span class="key">Quantity</span> - ${data[0].quantity}</p>
                     <p class="da info-item"><span class="key">Date Added</span> - ${Date.now()}</p>
                 </div>
+                <div class="img-container"></div>
                 <div class="buttons">
                     <button class="update">Update</button>
                     <button class="delete">Delete</button>

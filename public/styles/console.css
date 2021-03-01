@@ -97,7 +97,7 @@ body {
 }
 
 .header .page-title {
-	font-size: 1.5rem;
+	/* font-size: 1.5rem; */
 	font-weight: 200;
 }
 
@@ -112,13 +112,12 @@ body {
 	margin-right: 10px;
 }
 .user-options button {
-	background-color: #3c4852;
-	color: white;
-	border: 1px solid white;
-	outline: none;
+	background-color: white;
+	color: #3c4852;
 	width: 90px;
 	height: 25px;
-	cursor: pointer;
+	outline: none;
+	border: none;
 }
 
 /* ======================================== */
@@ -174,6 +173,7 @@ body {
 }
 
 .footer {
+	grid-area: footer;
 	background-color: #3c4852;
 }
 
@@ -197,13 +197,22 @@ body {
 .content-2 {
 	position: relative;
 	display: grid;
-	grid-template-rows: 1fr 5fr 1fr;
+	grid-template-rows: 1fr 2fr 3fr 1fr;
 	grid-template-columns: 1fr 1fr;
 	grid-template-areas:
 		'title title'
 		'desc info'
+		'img img'
 		'buttons buttons';
 	color: #0b0c10;
+}
+
+.img-container {
+	grid-area: img;
+	background-color: #d9d9d9;
+	margin: 0 auto;
+	width: 98%;
+	height: 100%;
 }
 .content-2 .title {
 	display: flex;
@@ -212,24 +221,26 @@ body {
 	justify-content: center;
 	align-items: start;
 	padding: 20px;
-	margin-top: 0;
-	font-size: 50px;
+	margin: 0;
+	margin-bottom: 10px;
+	height: 5rem;
+	font-size: 2rem;
 	background-color: #3c4852;
 	border-radius: 3px 3px 0 0;
 	color: white;
-	box-shadow: -2px 4px 14px -3px rgba(0, 0, 0, 0.44);
+	/* box-shadow: -2px 4px 14px -3px rgba(0, 0, 0, 0.44); */
 }
 
 .content-2 .title .sku {
 	background-color: transparent;
-	font-size: 25px;
+	font-size: 1rem;
 }
 
 .content-2 .description {
 	margin: 0;
 	width: 100%;
 	height: 100%;
-	border-right: 1px solid #3c4852;
+	/* border-right: 1px solid #3c4852; */
 	grid-area: desc;
 	display: flex;
 	flex-direction: row;
@@ -281,13 +292,13 @@ body {
 }
 
 .buttons .update {
-	background-color: orange;
+	background-color: #f79862;
 }
 .buttons .create {
 	background-color: greenyellow;
 }
 .buttons .delete {
-	background-color: red;
+	background-color: #ff4848;
 }
 
 /* ================= END =================== */
@@ -321,7 +332,7 @@ body {
 .product .title {
 	display: flex;
 	flex-direction: column;
-	font-size: 1.6rem;
+	/* font-size: 1.3rem; */
 	font-weight: 500;
 	margin: 0px;
 	margin-bottom: 5px;
@@ -329,19 +340,19 @@ body {
 
 .quantity {
 	font-weight: 800;
-	font-size: 25px;
+	font-size: 1.5rem;
 	margin: 0px;
 }
 
 .product .quantity .pcs {
-	font-size: 10px;
+	font-size: 0.5rem;
 	font-weight: 300;
 }
 .product .price {
 	display: flex;
 	border: 1px solid #3c4852;
-	height: 35px;
-	width: 90px;
+	height: 25px;
+	width: 70px;
 	border-radius: 4px;
 	align-items: center;
 	justify-content: center;
@@ -354,7 +365,42 @@ body {
 	font-size: 15px;
 	font-weight: 100;
 	width: 150px;
-	background-color: #f29f05;
+	/* background-color: #f29f05; */
 }
 
 /* =======================  END ================= */
+
+@media only screen and (max-width: 1070px) {
+	.container {
+		width: 100%;
+		grid-template-columns: 1fr;
+		grid-template-rows: 80px 1fr 15rem 30rem 50px;
+		grid-template-areas:
+			'header'
+			'head '
+			'content-1'
+			'content-2'
+			'footer';
+		overflow: scroll;
+	}
+
+	/* .price {
+		height: 20px;
+		width: 70px;
+		font-weight: 300;
+		font-size: 1rem;
+	} */
+
+	.title {
+		font-size: 1rem;
+	}
+	.title .sku {
+		font-size: 0.5em;
+		font-weight: 100;
+		width: 150px;
+		/* background-color: #f29f05; */
+	}
+	.page-title {
+		font-size: 1.1rem;
+	}
+}
