@@ -2,8 +2,9 @@ const express = require('express'),
     router = express.Router();
 
 const Product = require('../database').Product;
+const checkAuth = require('../utils/checkAuth');
 
-router.get('/console', (req, res) => {
+router.get('/console',checkAuth,(req, res) => {
     Product.find({}).then((results) => {
         res.render('console', { results });
     }).catch((err) => { 

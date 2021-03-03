@@ -5,6 +5,7 @@ const url = `mongodb+srv://ritik:${process.env.DB_PASSWORD}@cluster0.f3ffx.mongo
 //import models
 const Product  = require('./models/product');
 const siteData = require('./models/siteData');
+const userData = require('./models/user');
 
 //connect to the database
 mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true })
@@ -16,5 +17,5 @@ mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true })
 	})
 //export models for use in the routes
 module.exports = {
-	Product,siteData
+	Product,siteData,userData
 };

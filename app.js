@@ -3,6 +3,7 @@ const path = require('path');
 const morgan = require('morgan');
 const app = express();
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 const models = require('./database');
 
@@ -10,18 +11,23 @@ const models = require('./database');
 const productRouter = require('./routes/product');
 const homeRouter = require('./routes/home');
 const consoleRouter = require('./routes/console');
+const loginRouter = require('./routes/login');
+const signupRouter = require('./routes/signup');
 
 // express middlewares
 app.use(cors());
 app.use(morgan('tiny'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')));
 
 //use routes
 app.use('/', productRouter);
 app.use('/', homeRouter);
 app.use('/', consoleRouter);
+app.use('/', loginRouter);
+app.use('/', signupRouter);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
