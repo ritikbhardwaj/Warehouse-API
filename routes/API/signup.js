@@ -3,7 +3,7 @@ const express = require('express'),
 const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
 
-const userData = require('../database').userData;
+const userData = require('../../database').userData;
 
 let saltRounds = 3;
 

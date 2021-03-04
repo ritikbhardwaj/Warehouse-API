@@ -8,11 +8,18 @@ const cookieParser = require('cookie-parser');
 const models = require('./database');
 
 //import routes
-const productRouter = require('./routes/product');
-const homeRouter = require('./routes/home');
-const consoleRouter = require('./routes/console');
-const loginRouter = require('./routes/login');
-const signupRouter = require('./routes/signup');
+
+//API
+const productRouterApi = require('./routes/API/product');
+const loginRouterApi = require('./routes/API/login');
+const signupRouterApi = require('./routes/API/signup');
+
+
+//PAGES
+const homeRouter = require('./routes/PAGES/home');
+const consoleRouter = require('./routes/PAGES/console');
+const loginRouter = require('./routes/PAGES/login');
+
 
 // express middlewares
 app.use(cors());
@@ -23,11 +30,19 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')));
 
 //use routes
-app.use('/', productRouter);
+
+//API ROUTES
+app.use('/api', productRouterApi);
+app.use('/api', loginRouterApi);
+app.use('/api', signupRouterApi);
+
+
+//PAGES ROUTES
 app.use('/', homeRouter);
 app.use('/', consoleRouter);
 app.use('/', loginRouter);
-app.use('/', signupRouter);
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

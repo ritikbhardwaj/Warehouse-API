@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+        integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet"  href="/styles/login.css">
+</head>
+<body>
+    <div class="container">
+    <h1>Warehouse Console Login</h1>
+    <!-- <div id="form-message"></div> -->
+    <div id="form">
+        <label for="username">Email</label>
+        <input id="username" name="username" type="text" spellcheck="false" />
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" spellcheck="false" />
+        <div id="show_password">
+            <input id="checkbox" type="checkbox" />
+            <p>show password</p>
+        </div>
+        <div id="agree">
+            <input id="checkbox" type="checkbox" />
+            <p>I agree to all the <span id="terms">Terms and Conditions</span></p>
+        </div>
+    </div>
+    <button id="btn-submit" disabled>Submit</button>
+    </div>
+    <div class="footer">
+        <p class="link">check out <a href="https://github.com/ritikbhardwaj/Warehouse-API">Github</a> for the source code</p>
+    </div>
+    
+    <script src="/scripts/login.js"></script>
+</body>
+
+</html>

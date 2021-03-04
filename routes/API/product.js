@@ -1,8 +1,8 @@
 const express = require('express'),
     router = express.Router();
 
-const checkAuth = require('../utils/checkAuth');
-const { Product } = require('../database');
+const checkAuth = require('../../utils/checkAuth');
+const { Product } = require('../../database');
  
 //GET all the products
 router.get('/products', checkAuth,(req, res) => {

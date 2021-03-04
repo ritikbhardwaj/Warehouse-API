@@ -2,7 +2,7 @@ const express = require('express'),
     router = express.Router();
 
 //import the siteData model
-const siteData = require('../database').siteData;
+const siteData = require('../../database').siteData;
 
 
 router.get('/', (req, res) => {
