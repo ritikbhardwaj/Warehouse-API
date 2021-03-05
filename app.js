@@ -19,7 +19,7 @@ const signupRouterApi = require('./routes/API/signup');
 const homeRouter = require('./routes/PAGES/home');
 const consoleRouter = require('./routes/PAGES/console');
 const loginRouter = require('./routes/PAGES/login');
-
+const registerRouter = require('./routes/PAGES/register');
 
 // express middlewares
 app.use(cors());
@@ -41,6 +41,7 @@ app.use('/api', signupRouterApi);
 app.use('/', homeRouter);
 app.use('/', consoleRouter);
 app.use('/', loginRouter);
+app.use('/', registerRouter);
 
 
 

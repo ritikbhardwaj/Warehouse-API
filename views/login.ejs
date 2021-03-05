@@ -10,24 +10,24 @@
     <link rel="stylesheet"  href="/styles/login.css">
 </head>
 <body>
+    <nav><a href="http://localhost:3000">Minor Project</a></nav>
     <div class="container">
-    <h1>Warehouse Console Login</h1>
+    <h1>Console Login</h1>
     <!-- <div id="form-message"></div> -->
     <div id="form">
-        <label for="username">Email</label>
-        <input id="username" name="username" type="text" spellcheck="false" />
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" spellcheck="false" />
-        <div id="show_password">
+        <input id="email" placeholder="Email" name="email" type="text" spellcheck="false" />
+        <input id="password" placeholder="Password" name="password" type="password" spellcheck="false" />
+        <!-- <div id="show_password">
             <input id="checkbox" type="checkbox" />
             <p>show password</p>
-        </div>
-        <div id="agree">
+        </div> -->
+        <!-- <div id="agree">
             <input id="checkbox" type="checkbox" />
             <p>I agree to all the <span id="terms">Terms and Conditions</span></p>
-        </div>
+        </div> -->
     </div>
-    <button id="btn-submit" disabled>Submit</button>
+    <p>New here? <a href="http://localhost:3000/auth/register">register</a></p>
+    <button id="btn-submit">login</button>
     </div>
     <div class="footer">
         <p class="link">check out <a href="https://github.com/ritikbhardwaj/Warehouse-API">Github</a> for the source code</p>

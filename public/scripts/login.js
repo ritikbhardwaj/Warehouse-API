@@ -1,17 +1,5 @@
 //DOM loaded
 $(document).ready(() => {
-  //'I agree' checkbox logic
-  const agree = $("div#agree input");
-  agree.click(() => {
-    if ($(agree).prop("checked") === true) {
-      $("button#btn-submit").prop("disabled", false);
-      $("button#btn-submit").addClass("enabled");
-    } else {
-      $("button#btn-submit").prop("disabled", true);
-      $("button#btn-submit").removeClass("enabled");
-    }
-  });
-
   //'Show password' logic
   const show_passwd = $("div#show_password input");
   show_passwd.click(() => {
@@ -25,14 +13,13 @@ $(document).ready(() => {
   //Submit button logic
   $("#btn-submit").click(() => {
     //data from the form
-    var user = $("input#username").val();
+    var user = $("input#email").val();
     var pass = $("input#password").val();
 
     var userData = {
       username: user,
       password: pass
     };
-
     //reference to the form message container
     // const form_message = $("div#form-message");
 

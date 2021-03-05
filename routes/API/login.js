@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt');
 //data model
 const userData = require('../../database').userData;
 
-router.post('/auth/login',(req, res) => {
+router.post('/auth/login', (req, res) => {
     //Authenticate
     userData.findOne({ email: req.body.email }, (err, result) => {
         if (err) {
