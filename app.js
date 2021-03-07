@@ -19,7 +19,7 @@ const signupRouterApi = require('./routes/API/signup');
 const homeRouter = require('./routes/PAGES/home');
 const consoleRouter = require('./routes/PAGES/console');
 const loginRouter = require('./routes/PAGES/login');
-const registerRouter = require('./routes/PAGES/register');
+const registerRouter = require('./routes/PAGES/signup');
 
 // express middlewares
 app.use(cors());
