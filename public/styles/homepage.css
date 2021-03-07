@@ -2,19 +2,32 @@
 body {
 	height: 100vh;
 	width: 100vw;
-	background-color: white;
+	background-color: #f9f9f9f9;
 }
 .center {
 	margin: auto;
 	width: 300px;
 	padding: 10px;
 	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
-.center p {
-	font-family: courier;
+.center button {
+	margin-top: 30px;
+	border: none;
+	width: 400px;
+	height: 50px;
+	color: white;
 	font-size: 20px;
-	background-color: white;
+	background-color: #08f26e;
 	padding: 10px;
+
+	box-shadow: 0px 2px 16px 0px rgba(8, 242, 99, 0.75);
+	-webkit-box-shadow: 0px 2px 16px 0px rgba(8, 242, 99, 0.75);
+	-moz-box-shadow: 0px 2px 16px 0px rgba(8, 242, 99, 0.75);
+
+	cursor: pointer;
 }
 
 .footer {
@@ -30,6 +43,7 @@ body {
 	color: white;
 	text-align: center;
 	font-family: helvetica;
+	font-size: 12px;
 }
 .footer .views {
 	flex-grow: 1;

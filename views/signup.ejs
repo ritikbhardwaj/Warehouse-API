@@ -15,22 +15,41 @@
 			href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap"
 			rel="stylesheet"
 		/>
-		<link rel="stylesheet" href="/styles/login.css" />
+		<link rel="stylesheet" href="/styles/signup.css" />
 	</head>
+
 	<body>
 		<nav><a href="http://localhost:3000">Minor Project</a></nav>
 		<div class="container">
-			<h1>Console Login</h1>
+			<h1>Register</h1>
 			<div class="error"></div>
 			<!-- <div id="form-message"></div> -->
 			<div id="form">
+				<div class="name">
+					<input
+						id="firstname"
+						placeholder="First Name"
+						name="firstname"
+						type="text"
+						spellcheck="false"
+					/>
+					<input
+						id="lastname"
+						placeholder="Last Name"
+						name="firstname"
+						type="text"
+						spellcheck="false"
+					/>
+				</div>
+				<!-- <label for="username">Email</label> -->
 				<input
 					id="email"
-					placeholder="Email"
 					name="email"
+					placeholder="Email"
 					type="text"
 					spellcheck="false"
 				/>
+				<!-- <label for="password">Password</label> -->
 				<input
 					id="password"
 					placeholder="Password"
@@ -38,20 +57,26 @@
 					type="password"
 					spellcheck="false"
 				/>
+				<input
+					id="re-password"
+					placeholder="Retype Password"
+					name="password"
+					type="password"
+					spellcheck="false"
+				/>
 				<!-- <div id="show_password">
-            <input id="checkbox" type="checkbox" />
-            <p>show password</p>
-        </div> -->
-				<!-- <div id="agree">
-            <input id="checkbox" type="checkbox" />
-            <p>I agree to all the <span id="terms">Terms and Conditions</span></p>
-        </div> -->
+                <input id="checkbox" type="checkbox" />
+                <p>show password</p>
+            </div> -->
+				<div id="agree">
+					<p>
+						Already registered?
+						<a href="http://localhost:3000/auth/login">Login</a>
+					</p>
+				</div>
 			</div>
-			<p>
-				New here?
-				<a href="http://localhost:3000/auth/signup">register</a>
-			</p>
-			<button id="btn-submit">login</button>
+
+			<button id="btn-submit" disabled>Submit</button>
 		</div>
 		<div class="footer">
 			<p class="link">
@@ -63,6 +88,6 @@
 			</p>
 		</div>
 
-		<script src="/scripts/login.js"></script>
+		<script src="/scripts/signup.js"></script>
 	</body>
 </html>

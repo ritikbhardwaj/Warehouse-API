@@ -1,11 +1,11 @@
 const express = require('express'),
     router = express.Router();
 
-
-const { Product } = require('../database');
+const checkAuth = require('../../utils/checkAuth');
+const { Product } = require('../../database');
  
 //GET all the products
-router.get('/products', (req, res) => {
+router.get('/products', checkAuth,(req, res) => {
     Product.find({}).then((results) => {
         res.status(200).send(results);
     }).catch((err) => { 
@@ -14,8 +14,11 @@ router.get('/products', (req, res) => {
 });
 
 
+
+// All the routes are protected routes
+
 //GET a particular product
-router.get('/products/:SKU', (req, res) => {
+router.get('/products/:SKU',checkAuth,(req, res) => {
     const { SKU } = req.params;
     Product.find({ SKU }).then((result) => {  
         if (result.length == 0) {
@@ -29,7 +32,7 @@ router.get('/products/:SKU', (req, res) => {
 });
 
 //INSERT a new object (not checking if the product already exists)
-router.post('/products', (req, res) => {
+router.post('/products',checkAuth,(req, res) => {
     //object is empty
     if (Object.keys(req.body).length === 0 && req.body.constructor === Object) {
         res.status(400).send("<h1 style='text-align: center'>Bad request!</h1>");
@@ -54,7 +57,7 @@ router.post('/products', (req, res) => {
 });
 
 //UPDATE a product
-router.put('/products', (req, res) => { 
+router.put('/products',checkAuth,(req, res) => { 
     const { SKU, updateObj } = req.body;
     //make sure the update object is not empty
     let newObj = {};
@@ -83,7 +86,7 @@ router.put('/products', (req, res) => {
 });
 
 //DELETE a product
-router.delete('/products/:id', (req, res) => {
+router.delete('/products/:id',checkAuth,(req, res) => {
     const { id } = req.params;
     Product.deleteOne({ SKU: id })
         .then((result) => {
