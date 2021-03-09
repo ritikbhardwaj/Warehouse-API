@@ -33,7 +33,9 @@ $('document').ready(() => {
 					`<h1 style='font-size: 20px;font-weight: 300;position:relative; left: 50%; top: 50%;'>${err} - Session Expired!</h1>`
 				);
 				alert('Session Expired! Click done to go to login.');
-				window.location.replace('http://localhost:3000/auth/login');
+				window.location.replace(
+					'http://minor-project-api.herokuapp.com/auth/login'
+				);
 			});
 	}
 });
