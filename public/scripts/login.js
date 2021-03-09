@@ -25,7 +25,7 @@ $(document).ready(() => {
 		// const form_message = $("div#form-message");
 
 		//fetch
-		fetch('http://minor-project-api.herokuapp.com//api/auth/login', {
+		fetch('http://minor-project-api.herokuapp.com/api/auth/login', {
 			method: 'POST', // or 'PUT'
 			headers: {
 				'Content-Type': 'application/json',
