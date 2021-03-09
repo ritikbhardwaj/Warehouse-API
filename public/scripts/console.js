@@ -10,19 +10,15 @@ $('document').ready(() => {
 	//fetch handlers
 	function fetchhandler(sku) {
 		$('.content-2').html(`<h1 class="loading">loading...</h1>`);
-		fetch('https://minor-project-api.herokuapp.com/products/' + sku)
+		fetch('http://minor-project-api.herokuapp.com/api/products/' + sku)
 			.then((response) => response.json())
 			.then((data) => {
 				let html = `
-                <h3 class="title">${data[0].title}<span class="sku">#${
-					data[0].SKU
-				}</span></h3>
+                <h3 class="title">${data[0].title}<span class="sku">#${data[0].SKU}</span></h3>
                 <p class="description">${data[0].description}</p>
                 <div class="info">
-                    <p class="qty info-item"><span class="key">Quantity</span> - ${
-						data[0].quantity
-					}</p>
-                    <p class="da info-item"><span class="key">Date Added</span> - ${Date.now()}</p>
+                    <p class="qty info-item"><span class="key">Quantity</span> - ${data[0].quantity}</p>
+                    <p class="da info-item"><span class="key">Date Added</span> - ${data[0].dateAdded}</p>
                 </div>
                 <div class="img-container"></div>
                 <div class="buttons">
@@ -33,9 +29,11 @@ $('document').ready(() => {
 				$('.content-2').html(html);
 			})
 			.catch((err) => {
-				content_2.html(
-					`<h1 style='font-size: 20px;font-weight: 300;position:relative; left: 330px; top: 250px;'>${err}</h1>`
+				$('.content-2').html(
+					`<h1 style='font-size: 20px;font-weight: 300;position:relative; left: 50%; top: 50%;'>${err} - Session Expired!</h1>`
 				);
+				alert('Session Expired! Click done to go to login.');
+				window.location.replace('http://localhost:3000/auth/login');
 			});
 	}
 });

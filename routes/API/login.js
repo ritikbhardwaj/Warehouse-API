@@ -30,11 +30,14 @@ router.post('/auth/login', (req, res) => {
 						if (isAuthenticated) {
 							//User is authenticated
 							const accessToken = jwt.sign(
-								result.email,
+								{
+									uid: result.uid,
+									email: result.email,
+								},
 								process.env.ACCESS_TOKEN_SECRET
 							);
 							res.cookie('authCookie', accessToken, {
-								maxAge: 5 * 1000,
+								maxAge: 10 * 1000,
 								httpOnly: true,
 							});
 							res.json({

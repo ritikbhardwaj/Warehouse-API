@@ -1,55 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Warehouse Console</title>
+		<link rel="stylesheet" href="/styles/console.css" />
+		<script
+			src="https://code.jquery.com/jquery-3.5.1.min.js"
+			integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+			crossorigin="anonymous"
+		></script>
+		<script src="scripts/console.js"></script>
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warehouse Console</title>
-    <link rel="stylesheet" href="styles/console.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <script src="scripts/console.js"></script>
-</head>
-
-<body>
-    <div class="container">
-        <div class="item header">
-            <h2 class="page-title">Warehouse Console 1.0</h2>
-            <div class="user-options">
-                <h3 class="user-name">Ritik bhardwaj</h3>
-                <button>Log Out</button>
-            </div>
-        </div>
-        <div class="head">
-            <h1>Product List</h1>
-            <button>Refresh</button>
-        </div>
-        <div class="item content-1">
-            <% results.forEach((obj)=>{%>
-                <div class="product">
-                    <p class="title"><%= obj.title %><span class="sku">#<%= obj.SKU %></span></p>
-                    <p class="quantity"><%= obj.quantity %><span class="pcs">/pcs</span></p>
-                    <p class="price">₹<%= obj.price %></p>
-                </div>
-            <% }) %>
-        </div>
-        <div class="item content-2">
-            <!-- <h1 class="loading">loading...</h1> -->
-            <h3 class="title"><%= results[0].title %><span class="sku">#<%= results[0].SKU %></span></h3>
-            <p class="description"><%= results[0].description %></p>
-            <div class="info">
-                <p class="qty info-item"><span class="key">Quantity</span> - <%= results[0].quantity %></p>
-                <p class="da info-item"><span class="key">Date Added</span> - <%= Date.now()%></p>
-            </div>
-            <div class="img-container"></div>
-            <div class="buttons">
-                <button class="update">Update</button>
-                <button class="delete">Delete</button>
-            </div>
-        </div>
-        <div class="item footer"></div>
-    </div>
-</body>
-
+	<body>
+		<div class="container">
+			<div class="item header">
+				<h2 class="page-title">Warehouse Console 1.0</h2>
+				<div class="user-options">
+					<h3 class="user-name">Ritik bhardwaj</h3>
+					<button>Log Out</button>
+				</div>
+			</div>
+			<div class="head">
+				<h1>Product List</h1>
+				<button>Refresh</button>
+			</div>
+			<div class="item content-1">
+				<% if (results.length == 0) { %>
+				<p
+					style="
+						color: black;
+						margin: 0 auto;
+						font-weight: 500;
+						font-size: 15px;
+					"
+				>
+					Product list empty!
+				</p>
+				<%} else { %> <% results.forEach((obj)=>{%>
+				<div class="product">
+					<p class="title">
+						<%= obj.title %><span class="sku">#<%= obj.SKU %></span>
+					</p>
+					<p class="quantity">
+						<%= obj.quantity %><span class="pcs">/pcs</span>
+					</p>
+					<p class="price">₹<%= obj.price %></p>
+				</div>
+				<% }) %> <% } %>
+			</div>
+			<div class="item content-2">
+				<p
+					style="
+						color: black;
+						margin: 0 auto;
+						font-weight: 500;
+						font-size: 15px;
+						position: relative;
+						left: 50%;
+						top: 20%;
+					"
+				>
+					Click on a product to see details
+				</p>
+			</div>
+			<div class="item footer"></div>
+		</div>
+	</body>
 </html>

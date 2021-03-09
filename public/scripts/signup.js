@@ -40,7 +40,7 @@ $(document).ready(() => {
 					$('.error').hide();
 					// similar behavior as an HTTP redirect
 					window.location.replace(
-						'https://minor-project-api.herokuapp.com/'
+						'https://minor-project-api.herokuapp.com/auth/login'
 					);
 				}
 			})

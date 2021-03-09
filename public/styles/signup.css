@@ -42,11 +42,7 @@ body {
 	/* display: flex;
 	align-items: flex-start;
 	justify-content: center; */
-	background-color: #f9f9f9;
-	background-image: url('/images/img-texture.jpg');
-	background-position: center; /* Center the image */
-	background-repeat: no-repeat; /* Do not repeat the image */
-	background-size: cover; /* Resize the background image to cover the entire container */
+	background-color: white;
 }
 .container {
 	margin: 0 auto;
