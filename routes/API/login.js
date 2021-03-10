@@ -37,7 +37,7 @@ router.post('/auth/login', (req, res) => {
 								process.env.ACCESS_TOKEN_SECRET
 							);
 							res.cookie('authCookie', accessToken, {
-								maxAge: 10 * 1000,
+								maxAge: 1 * 60 * 1000, // 1 minute
 								httpOnly: true,
 							});
 							res.json({

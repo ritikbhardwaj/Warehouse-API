@@ -33,15 +33,17 @@ router.get('/products/:SKU', checkAuth, (req, res) => {
 	Product.find({ SKU })
 		.then((result) => {
 			if (result.length == 0) {
-				res.status(500).send(
-					`<h1 style='text-align: center'>Product Not found!</h1>`
-				);
+				res.status(500).send({
+					err: true,
+					errCode: 500,
+					message: 'Product not found.',
+				});
 			} else {
 				res.status(200).send(result);
 			}
 		})
 		.catch((err) => {
-			res.status(404).send({ err: true, message: err });
+			res.status(404).send({ err: true, errCode: 404, message: err });
 		});
 });
 
@@ -49,9 +51,11 @@ router.get('/products/:SKU', checkAuth, (req, res) => {
 router.post('/products', checkAuth, (req, res) => {
 	//object is empty
 	if (Object.keys(req.body).length === 0 && req.body.constructor === Object) {
-		res.status(400).send(
-			"<h1 style='text-align: center'>Bad request!</h1>"
-		);
+		res.status(400).send({
+			err: true,
+			errCode: 400,
+			message: 'Bad request.',
+		});
 	} else {
 		let product = {
 			SKU: Date.now(),
@@ -81,31 +85,47 @@ router.put('/products', checkAuth, (req, res) => {
 	const { SKU, updateObj } = req.body;
 	//make sure the update object is not empty
 	let newObj = {};
-	Object.keys(updateObj).forEach((key) => {
-		if (updateObj[key] != '') {
-			newObj[key] = updateObj[key];
-		}
-	});
 	//if the newObject is empty then no need to do anything, infact it's a bad request!
-	if (Object.keys(newObj).length === 0 && newObj.constructor === Object) {
-		res.status(400).send(
-			"<h1 style='text-align: center'>Bad request!</h1>"
-		);
-	} else {
-		Product.updateOne({ SKU }, updateObj)
+	// if (Object.keys(newObj).length === 0 && newObj.constructor === Object) {
+	// 	res.status(400).send({
+	// 		err: true,
+	// 		errCode: 400,
+	// 		message: 'Bad request.',
+	// 	});
+	// } else {
+	Product.find({ SKU }).then((results) => {
+		Object.keys(updateObj).forEach((key) => {
+			if (updateObj[key] != '') {
+				newObj[key] = updateObj[key];
+			}
+		});
+		let queryObj = Object.assign(results[0], newObj);
+		Product.updateOne({ SKU }, queryObj)
 			.then((result) => {
-				if (!result.nModified) {
-					res.status(501).send(
-						"<h1 style='text-align: center'>No Product updated!</h1>"
-					);
-				} else {
-					res.status(200).send(result);
-				}
+				res.status(200).send({
+					err: false,
+					errCode: 200,
+					message: 'Successfully updated.',
+				});
+				// if (!result.nModified) {
+				// 	res.status(501).send({
+				// 		err: true,
+				// 		errCode: 501,
+				// 		message: 'No product updated.',
+				// 	});
+				// } else {
+				// 	res.status(200).send(result);
+				// }
 			})
 			.catch((err) => {
-				res.send(500).send(err);
+				res.status(500).send({
+					err: true,
+					errCode: 500,
+					message: err,
+				});
 			});
-	}
+	});
+	// }
 });
 
 //DELETE a product

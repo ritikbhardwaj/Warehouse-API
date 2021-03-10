@@ -1,3 +1,4 @@
+let URI = 'http://minor-project-api.herokuapp.com';
 //DOM loaded
 $(document).ready(() => {
 	$('.error').hide();
@@ -25,7 +26,7 @@ $(document).ready(() => {
 		// const form_message = $("div#form-message");
 
 		//fetch
-		fetch('http://minor-project-api.herokuapp.com/api/auth/login', {
+		fetch(URI + '/api/auth/login', {
 			method: 'POST', // or 'PUT'
 			headers: {
 				'Content-Type': 'application/json',
@@ -41,9 +42,7 @@ $(document).ready(() => {
 				} else {
 					$('.error').hide();
 					// similar behavior as an HTTP redirect
-					window.location.replace(
-						'http://minor-project-api.herokuapp.com/console'
-					);
+					window.location.replace(URI + '/console');
 				}
 			})
 			.catch((error) => {
