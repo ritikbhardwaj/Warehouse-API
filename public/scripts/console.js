@@ -26,6 +26,7 @@ function fetchSingleProduct(sku) {
 						<p class="description">${data[0].description}</p>
 						<div class="info">
 							<p class="qty info-item"><span class="key">Quantity</span> - ${data[0].quantity}</p>
+							<p class="price info-item"><span class="key">Price</span> - ${data[0].price}</p>
 							<p class="da info-item"><span class="key">Date Added</span> - ${data[0].dateAdded}</p>
 						</div>
 						<div class="img-container"></div>
