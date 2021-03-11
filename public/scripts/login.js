@@ -1,4 +1,4 @@
-let URI = 'http://minor-project-api.herokuapp.com';
+let URI = 'http://localhost:3000';
 //DOM loaded
 $(document).ready(() => {
 	$('.error').hide();

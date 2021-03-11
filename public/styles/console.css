@@ -209,11 +209,16 @@ body {
 	flex-direction: row;
 	align-items: center;
 }
-.user-options .user-name {
+.user-options .email {
 	font-size: 1.1rem;
 	font-weight: 300;
 	margin-right: 10px;
 }
+
+.user-options .email:hover {
+	text-decoration: underline;
+}
+
 .user-options button {
 	background-color: white;
 	color: #3c4852;
@@ -358,11 +363,13 @@ body {
 	flex-direction: column;
 	align-items: flex-start;
 	margin: 0;
+	margin-bottom: 10px;
 	width: 100%;
 	height: 100%;
 	padding: 10px;
 	font-size: 25px;
 	font-weight: 500;
+	border-left: solid #3c4852 2px;
 }
 
 .content-2 .info-item {

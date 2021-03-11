@@ -28,7 +28,7 @@ router.get('/console', customCheckAuth, (req, res) => {
 		function (err, decoded) {
 			Product.find({ uid: decoded.uid })
 				.then((results) => {
-					res.render('console', { results });
+					res.render('console', { results, email: decoded.email });
 				})
 				.catch((err) => {
 					res.status(404).send(

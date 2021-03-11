@@ -12,8 +12,8 @@ const models = require('./database');
 //API
 const productRouterApi = require('./routes/API/product');
 const loginRouterApi = require('./routes/API/login');
+const logoutRouterApi = require('./routes/API/logout');
 const signupRouterApi = require('./routes/API/signup');
-
 
 //PAGES
 const homeRouter = require('./routes/PAGES/home');
@@ -26,7 +26,7 @@ app.use(cors());
 app.use(morgan('tiny'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser())
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //use routes
@@ -34,8 +34,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //API ROUTES
 app.use('/api', productRouterApi);
 app.use('/api', loginRouterApi);
+app.use('/api', logoutRouterApi);
 app.use('/api', signupRouterApi);
-
 
 //PAGES ROUTES
 app.use('/', homeRouter);
@@ -43,11 +43,8 @@ app.use('/', consoleRouter);
 app.use('/', loginRouter);
 app.use('/', registerRouter);
 
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
 
 module.exports = app;

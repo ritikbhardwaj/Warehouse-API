@@ -134,15 +134,25 @@ router.delete('/products/:id', checkAuth, (req, res) => {
 	Product.deleteOne({ SKU: id })
 		.then((result) => {
 			if (!result.deletedCount) {
-				res.status(501).send(
-					"<h1 style='text-align: center'>No Product deleted!</h1>"
-				);
+				res.status(501).send({
+					err: true,
+					code: 501,
+					message: 'No product deleted!',
+				});
 			} else {
-				res.status(200).send(result);
+				res.status(200).send({
+					err: false,
+					code: 200,
+					message: result,
+				});
 			}
 		})
 		.catch((err) => {
-			res.status(501).send(err);
+			res.status(501).send({
+				err: true,
+				code: 501,
+				message: err,
+			});
 		});
 });
 

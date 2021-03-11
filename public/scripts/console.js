@@ -1,4 +1,4 @@
-let URI = 'http://minor-project-api.herokuapp.com';
+let URI = 'http://localhost:3000';
 //fetch handlers
 function fetchSingleProduct(sku) {
 	$('.content-2').html(`<h1 class="loading">loading...</h1>`);
@@ -32,7 +32,7 @@ function fetchSingleProduct(sku) {
 						<div class="img-container"></div>
 						<div class="buttons">
 							<button class="update" onClick=onClickUpdate(this) >Update</button>
-							<button class="delete">Delete</button>
+							<button class="delete" onClick=onClickDelete(this)>Delete</button>
 						</div> 
                 `;
 				$('.content-2').html(html);
@@ -47,6 +47,46 @@ function fetchSingleProduct(sku) {
 		});
 }
 
+function onClickRefresh() {
+	$('.content-1').html(
+		'<h3 style="color: black; font-weight: 200; margin: 0 auto;">loading</h3>'
+	);
+	fetch(URI + '/api/products')
+		.then((response) => response.json())
+		.then((data) => {
+			let html = '';
+			data.forEach((product) => {
+				html += `
+					<div class="product" onClick="onClickProduct(this)">
+						<p class="title">
+							${product.title}<span class="sku">#${product.SKU}</span>
+						</p>
+						<p class="quantity">
+							${product.quantity}<span class="pcs">/pcs</span>
+						</p>
+						<p class="price">₹${product.price}</p>
+					</div>
+					`;
+			});
+			$('.content-1').html(html);
+		})
+		.catch((err) => console.err(err));
+}
+
+function onClickLogout() {
+	fetch(URI + '/api/auth/logout')
+		.then((response) => {
+			return response.json();
+		})
+		.then((data) => {
+			console.log(data);
+			window.location.replace(URI + '/');
+		})
+		.catch((err) => {
+			console.err(err);
+		});
+}
+
 function updateHandler(sku, updateObj) {
 	let data = { SKU: sku, updateObj };
 	fetch(URI + '/api/products', {
@@ -58,7 +98,28 @@ function updateHandler(sku, updateObj) {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			window.location.replace(URI + '/console');
+			$('.new').hide();
+			$('.cover').hide();
+			onClickRefresh();
+			fetchSingleProduct(sku);
+			// window.location.replace(URI + '/console');
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+}
+
+function onClickDelete() {
+	let sku = $('.content-2 span.sku').html().slice(1);
+
+	fetch(URI + '/api/products/' + sku, {
+		method: 'DELETE', // or 'PUT'
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			onClickRefresh();
+			fetchSingleProduct('34534'); //fetch some random product that does not exist
 		})
 		.catch((error) => {
 			console.error(error);
@@ -95,19 +156,25 @@ function onClickUpdate() {
 	});
 }
 
+function onClickProduct(e) {
+	let sku = e.children.item(0).children.item(0).innerText.slice(1);
+	fetchSingleProduct(sku);
+}
+
 $('document').ready(() => {
 	//intial setup
 	$('.new').hide();
 	$('.cover').hide();
 
-	//click event listener
-	$('.product').click((e) => {
-		let sku = e.currentTarget.children
-			.item(0)
-			.children.item(0)
-			.innerText.slice(1);
-		fetchSingleProduct(sku);
-	});
+	// //click event listener
+	// $('.product').click((e) => {
+	// 	let sku = e.currentTarget.children
+	// 		.item(0)
+	// 		.children.item(0)
+	// 		.innerText.slice(1);
+	// 	console.log(sku);
+	// 	fetchSingleProduct(sku);
+	// });
 
 	$('.cover').click(() => {
 		$('.new').fadeOut();

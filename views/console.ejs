@@ -37,13 +37,17 @@
 			<div class="item header">
 				<h2 class="page-title">Warehouse Console 1.0</h2>
 				<div class="user-options">
-					<h3 class="user-name">Ritik bhardwaj</h3>
-					<button>Log Out</button>
+					<h3 class="email"><%= email %></h3>
+					<button class="logout" onclick="onClickLogout()">
+						Log Out
+					</button>
 				</div>
 			</div>
 			<div class="head">
-				<h1>Product List</h1>
-				<button>Refresh</button>
+				<button class="add">New product</button>
+				<button class="refresh" onclick="onClickRefresh(this)">
+					Refresh
+				</button>
 			</div>
 			<div class="item content-1">
 				<% if (results.length == 0) { %>
@@ -58,7 +62,7 @@
 					Product list empty!
 				</p>
 				<%} else { %> <% results.forEach((obj)=>{%>
-				<div class="product">
+				<div class="product" onClick="onClickProduct(this)">
 					<p class="title">
 						<%= obj.title %><span class="sku">#<%= obj.SKU %></span>
 					</p>
