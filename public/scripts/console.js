@@ -1,4 +1,4 @@
-let URI = 'http://localhost:3000';
+let URI = 'http://minor-project-api.herokuapp.com';
 //fetch handlers
 function fetchSingleProduct(sku) {
 	$('.content-2').html(`<h1 class="loading">loading...</h1>`);
@@ -47,6 +47,7 @@ function fetchSingleProduct(sku) {
 		});
 }
 
+//Refresh handler
 function onClickRefresh() {
 	$('.content-1').html(
 		'<h3 style="color: black; font-weight: 200; margin: 0 auto;">loading</h3>'
@@ -73,6 +74,7 @@ function onClickRefresh() {
 		.catch((err) => console.err(err));
 }
 
+//Logout handler
 function onClickLogout() {
 	fetch(URI + '/api/auth/logout')
 		.then((response) => {
@@ -109,6 +111,7 @@ function updateHandler(sku, updateObj) {
 		});
 }
 
+//Delete handler
 function onClickDelete() {
 	let sku = $('.content-2 span.sku').html().slice(1);
 
