@@ -1,8 +1,9 @@
 const express = require('express'),
 	router = express.Router();
 
+const joi = require('joi');
 const checkAuth = require('../../utils/checkAuth');
-const { Product } = require('../../database');
+const { Product, userData } = require('../../database');
 const jwt = require('jsonwebtoken');
 const getDate = require('../../utils/getDate');
 
@@ -19,9 +20,11 @@ router.get('/products', checkAuth, (req, res) => {
 					res.status(200).send(results);
 				})
 				.catch((err) => {
-					res.status(404).send(
-						`<h1 style='text-align: center'>${err}</h1>`
-					);
+					res.status(404).send({
+						err: true,
+						code: 404,
+						message: err,
+					});
 				});
 		}
 	);
@@ -35,7 +38,7 @@ router.get('/products/:SKU', checkAuth, (req, res) => {
 			if (result.length == 0) {
 				res.status(500).send({
 					err: true,
-					errCode: 500,
+					code: 500,
 					message: 'Product not found.',
 				});
 			} else {
@@ -43,39 +46,48 @@ router.get('/products/:SKU', checkAuth, (req, res) => {
 			}
 		})
 		.catch((err) => {
-			res.status(404).send({ err: true, errCode: 404, message: err });
+			res.status(404).send({ err: true, code: 404, message: err });
 		});
 });
 
 //INSERT a new object (not checking if the product already exists)
 router.post('/products', checkAuth, (req, res) => {
+	console.log(req.body);
 	//object is empty
 	if (Object.keys(req.body).length === 0 && req.body.constructor === Object) {
 		res.status(400).send({
 			err: true,
-			errCode: 400,
+			code: 400,
 			message: 'Bad request.',
 		});
 	} else {
-		let product = {
-			SKU: Date.now(),
-			uid: req.body.uid,
-			title: req.body.title,
-			description: req.body.description,
-			quantity: req.body.quantity,
-			price: req.body.price,
-			dateAdded: getDate(),
-		};
-		let newProduct = new Product(product);
-		newProduct.save((err, result) => {
-			if (err) {
-				res.status(501).send(
-					`<h1 style='text-align: center'>${err._message}</h1>`
-				);
-				console.log(err);
-			} else {
-				res.status(200).send(result);
-			}
+		//find the uid of the user with given email
+		userData.find({ email: req.body.email }).then((user) => {
+			let product = {
+				SKU: Date.now(),
+				uid: user[0].uid,
+				title: req.body.title,
+				description: req.body.description,
+				quantity: req.body.quantity,
+				price: req.body.price,
+				dateAdded: getDate(),
+			};
+			let newProduct = new Product(product);
+			newProduct.save((err, result) => {
+				if (err) {
+					res.status(501).send({
+						err: true,
+						code: 501,
+						message: err,
+					});
+				} else {
+					res.status(200).send({
+						err: false,
+						code: 200,
+						message: 'Product created successfully!',
+					});
+				}
+			});
 		});
 	}
 });
@@ -99,12 +111,13 @@ router.put('/products', checkAuth, (req, res) => {
 				newObj[key] = updateObj[key];
 			}
 		});
+
 		let queryObj = Object.assign(results[0], newObj);
 		Product.updateOne({ SKU }, queryObj)
 			.then((result) => {
 				res.status(200).send({
 					err: false,
-					errCode: 200,
+					code: 200,
 					message: 'Successfully updated.',
 				});
 				// if (!result.nModified) {
@@ -120,12 +133,12 @@ router.put('/products', checkAuth, (req, res) => {
 			.catch((err) => {
 				res.status(500).send({
 					err: true,
-					errCode: 500,
+					code: 500,
 					message: err,
 				});
 			});
 	});
-	// }
+	//}
 });
 
 //DELETE a product

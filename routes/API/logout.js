@@ -8,7 +8,7 @@ router.get('/auth/logout', (req, res) => {
 	res.clearCookie('authCookie');
 	res.send({
 		err: false,
-		errCode: 200,
+		code: 200,
 		message: 'Successfully logged out',
 	});
 });

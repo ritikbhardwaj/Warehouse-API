@@ -100,6 +100,7 @@ function updateHandler(sku, updateObj) {
 	})
 		.then((response) => response.json())
 		.then((data) => {
+			console.log(data);
 			$('.new').hide();
 			$('.cover').hide();
 			onClickRefresh();
@@ -159,6 +160,49 @@ function onClickUpdate() {
 	});
 }
 
+function onClickNewProduct() {
+	$('.new-product').fadeIn();
+	$('.cover').fadeIn();
+}
+
+function onClickAdd() {
+	let email = $('h3.email').text();
+	(title = $('.new-product input#new-name').val()),
+		(quantity = $('.new-product input#new-quantity').val()),
+		(price = $('.new-product input#new-price').val()),
+		(description = $('.new-product textarea#new-description').val());
+	let obj = {
+		email,
+		title,
+		quantity,
+		price,
+		description,
+	};
+	newProductHandler(obj);
+}
+
+function newProductHandler(obj) {
+	console.log(obj);
+	fetch(URI + '/api/products', {
+		method: 'POST', // or 'PUT'
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(obj),
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			$('.new-product').hide();
+			$('.cover').hide();
+			onClickRefresh();
+			// window.location.replace(URI + '/console');
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+}
+
 function onClickProduct(e) {
 	let sku = e.children.item(0).children.item(0).innerText.slice(1);
 	fetchSingleProduct(sku);
@@ -167,6 +211,7 @@ function onClickProduct(e) {
 $('document').ready(() => {
 	//intial setup
 	$('.new').hide();
+	$('.new-product').hide();
 	$('.cover').hide();
 
 	// //click event listener
@@ -181,6 +226,7 @@ $('document').ready(() => {
 
 	$('.cover').click(() => {
 		$('.new').fadeOut();
+		$('.new-product').fadeOut();
 		$('.cover').fadeOut();
 	});
 });
